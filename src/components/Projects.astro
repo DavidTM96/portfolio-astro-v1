@@ -1,0 +1,73 @@
+---
+import NextJS from "./icons/NextJS.astro";
+import Tailwind from "./icons/Tailwind.astro";
+
+const TAGS = {
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white",
+    icon: NextJS,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Real Outfit",
+    description:
+      "Real Outfit allows users to browse products, view detailed product information, and manage their shopping cart. With a clean, responsive interface and modern tech stack, this platform is built for a smooth and enjoyable shopping experience.",
+    link: "https://real-outfit-86dmsikw7-davidtm96s-projects.vercel.app/",
+    github: "https://github.com/DavidTM96/real-outfit",
+    image: "/projects/real-outfit.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    title: "Up Immigration",
+    description:
+      "Welcome to Up Immigration! This website is designed to clearly present various Canadian immigration pathways, such as study permits, work permits, and more. With a clean and accessible interface, users can easily explore their options and understand the steps involved in each immigration process.",
+    link: "https://migration-crew-website.vercel.app/",
+    github: "https://github.com/migration-crew/immigration-website",
+    image: "/projects/up-immigration.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    title: "Finance Tracker",
+    description:
+      "Finance M8 is designed to help you effortlessly track your incomes and expenses. With a simple and intuitive interface, you can easily add new financial records, update existing ones, and delete records you no longer need.",
+    link: "https://finance-m8.vercel.app/",
+    github: "https://github.com/DavidTM96/finance-m8",
+    image: "/projects/finance-tracker.webp",
+    tags: [TAGS.NEXT],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, description, link, image, tags, github }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex flex-row mb-2 gap-x-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-xs py-1 px-2 ${tag.class}`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10"
+        src={image}
+        alt={`Screenshot of the project ${image}`}
+      />
+    </article>
+  ))
+}

@@ -1,11 +1,82 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Badge from "../components/Badge.astro";
+import Experience from "../components/Experience.astro";
+import BriefcaseIcon from "../components/icons/Briefcase.astro";
+import CodeIcon from "../components/icons/Code.astro";
+import GithubIcon from "../components/icons/Github.astro";
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import MailIcon from "../components/icons/Mail.astro";
+import Projects from "../components/Projects.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import SocialPill from "../components/SocialPill.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="David Torrez' portfolio - Web Developer and Programmer"
+  description="Hire David Torrez to create your website. Web Developer and instructor. Specialized in creating Responsive and User-friendly interfaces."
+>
+  <main class="px-4">
+    <SectionContainer class="py-44 pb-32">
+      <img
+        src="https://web-portfolio-v1-five.vercel.app/assets/profile.png"
+        alt="A picture of David Torrez looking at the camera"
+        class="rounded-full size-12 mb-4"
+      />
+      <h1
+        class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+      >
+        Hey, I'm David Torrez <a
+          href="https://www.linkedin.com/in/david-torrez"
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center"
+        >
+          <Badge>Available to work</Badge>
+        </a>
+      </h1>
+      <h2 class="text-xl lg:text-2xl text-wrap max-w-[700px]">
+        Web Developer based in Vancouver, Canada. I focus on creating
+        <span class="text-yellow-200/90">
+          Responsive and User-friendly interfaces.
+        </span>
+      </h2>
+
+      <nav class="flex gap-4 mt-8 flex-wrap">
+        <SocialPill href="https://github.com/DavidTM96">
+          <GithubIcon class="size-4 md:size-6" />
+          GitHub
+        </SocialPill>
+
+        <SocialPill href="https://www.linkedin.com/in/david-torrez">
+          <LinkedInIcon class="size-4 md:size-6" />
+          LinkedIn
+        </SocialPill>
+
+        <SocialPill href="mailto:dtorrez1996@gmail.com">
+          <MailIcon class="size-4 md:size-6" />
+          dtorrez1996@gmail.com
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+
+    <SectionContainer id="experience">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <BriefcaseIcon class="size-8" />
+        Work Experience
+      </h2>
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="projects">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <CodeIcon class="size-8" />
+        Projects
+      </h2>
+      <Projects />
+    </SectionContainer>
+  </main>
 </Layout>
