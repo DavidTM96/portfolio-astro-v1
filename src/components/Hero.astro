@@ -2,7 +2,7 @@
 const personalImageAlt = "David Torrez";
 import GithubIcon from "../components/icons/Github.astro";
 import LinkedInIcon from "../components/icons/LinkedIn.astro";
-import MailIcon from "../components/icons/Mail.astro";
+import ResumeIcon from "../components/icons/Resume.astro";
 import Badge from "./Badge.astro";
 import SocialPill from "./SocialPill.astro";
 ---
@@ -10,8 +10,8 @@ import SocialPill from "./SocialPill.astro";
 <div class="max-w-xl">
   <div class="flex gap-4 mb-4">
     <img
-      class="rounded-full shadow-lg size-18 bg-blue-400"
-      src="/projects/profile.webp"
+      class="rounded-full shadow-lg size-20 aspect-auto object-cover"
+      src="/public/picture-3.webp"
       alt={personalImageAlt}
     />
     <a
@@ -24,7 +24,7 @@ import SocialPill from "./SocialPill.astro";
     </a>
   </div>
   <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+    class="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-gray-800 dark:text-white"
   >
     Hey, I'm David Torrez
   </h1>
@@ -35,7 +35,7 @@ import SocialPill from "./SocialPill.astro";
       >Responsive and User-friendly interfaces.</strong
     >
   </p>
-  <nav class="flex flex-wrap gap-4 mt-8">
+  <nav class="flex flex-nowrap gap-x-2 mt-8">
     <SocialPill href="https://github.com/DavidTM96">
       <GithubIcon class="size-4" />
       GitHub
@@ -46,9 +46,9 @@ import SocialPill from "./SocialPill.astro";
       LinkedIn
     </SocialPill>
 
-    <SocialPill href="mailto:dtorrez1996@gmail.com">
-      <MailIcon class="size-4" />
-      Contact me
+    <SocialPill href="/resume.pdf">
+      <ResumeIcon class="size-4" />
+      Resume
     </SocialPill>
   </nav>
 </div>
