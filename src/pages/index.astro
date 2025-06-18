@@ -1,14 +1,12 @@
 ---
-import Experience from "../components/Experience.astro";
+import AboutMe from "../components/AboutMe.astro";
 import Hero from "../components/Hero.astro";
-import BriefcaseIcon from "../components/icons/Briefcase.astro";
 import CodeIcon from "../components/icons/Code.astro";
+import ProfileCheck from "../components/icons/ProfileCheck.astro";
 import Projects from "../components/Projects.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import TitleSection from "../components/TitleSection.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout
@@ -16,25 +14,36 @@ import Layout from "../layouts/Layout.astro";
   description="Hire David Torrez to create your website. Web Developer and instructor. Specialized in creating Responsive and User-friendly interfaces."
 >
   <main class="px-4">
-    <SectionContainer class="py-44 pb-32">
+    <SectionContainer class="py-16 md:py-36" id="home">
       <Hero />
       <slot />
     </SectionContainer>
 
-    <SectionContainer id="experience">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-        <BriefcaseIcon class="size-8" />
-        Work Experience
-      </h2>
-      <Experience />
-    </SectionContainer>
+    <div class="space-y-24">
+      <!-- Experience section commented for now as no experience to show -->
+      <!-- <SectionContainer id="experience">
+        <TitleSection>
+          <Briefcase class="size-8" />
+          Work Experience
+        </TitleSection>
+        <Experience />
+      </SectionContainer> -->
 
-    <SectionContainer id="projects">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-        <CodeIcon class="size-8" />
-        Projects
-      </h2>
-      <Projects />
-    </SectionContainer>
+      <SectionContainer id="projects" class="scroll-mt-24">
+        <TitleSection>
+          <CodeIcon class="size-8" />
+          Projects
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="about" class="scroll-mt-24">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          About
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+    </div>
   </main>
 </Layout>
