@@ -1,0 +1,101 @@
+---
+import UkFlag from "./icons/UkFlag.astro";
+import SpainFlag from "./icons/SpainFlag.astro";
+
+const { lang, t } = Astro.props;
+
+const languages = [
+  { code: "en", label: t.languageOptions.en, flag: "uk" },
+  { code: "es", label: t.languageOptions.es, flag: "es" },
+];
+
+const currentLang =
+  languages.find((language) => language.code === lang) ?? languages[0];
+---
+
+<div class="relative inline-block">
+  <button
+    id="lang-switcher-btn"
+    class="flex items-center gap-2 px-4 py-1 transition"
+    type="button"
+  >
+    <span>
+      {currentLang.code === "en" ? <UkFlag /> : <SpainFlag />}
+    </span>
+    <svg
+      class="w-4 h-4"
+      fill="#ffffff"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  <div
+    id="lang-dropdown"
+    class="hidden absolute right-0 mt-2 w-40 border rounded-lg z-10 backdrop-blur-md border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+  >
+    <ul>
+      {
+        languages.map((language) => (
+          <li>
+            <button
+              class={`flex items-center w-full px-4 py-2 gap-2 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 transition ${language.code === lang ? "font-bold text-green-600" : ""}`}
+              data-lang={language.code}
+              disabled={language.code === lang}
+            >
+              <span>{language.code === "en" ? <UkFlag /> : <SpainFlag />}</span>
+              <span>{language.label}</span>
+              {language.code === lang && (
+                <span class=" text-green-600">✔️</span>
+              )}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById("lang-switcher-btn");
+  const dropdown = document.getElementById("lang-dropdown");
+
+  if (btn && dropdown) {
+    // Toggle Language dropdown
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle("hidden");
+
+      const isOpen = !dropdown.classList.contains("hidden");
+      if (isOpen) {
+        document.dispatchEvent(new CustomEvent("close-theme-menu"));
+      }
+    });
+
+    document.addEventListener("click", () => {
+      dropdown.classList.add("hidden");
+    });
+
+    document.addEventListener("close-language-menu", () => {
+      dropdown.classList.add("hidden");
+    });
+
+    dropdown.querySelectorAll("button[data-lang]").forEach((langBtn) => {
+      langBtn.addEventListener("click", () => {
+        const lang = langBtn.getAttribute("data-lang");
+        if (lang) {
+          const newPath = window.location.pathname.replace(
+            /^\/(es|en)/,
+            `/${lang}`
+          );
+          window.location.pathname = newPath;
+        }
+      });
+    });
+  }
+</script>
