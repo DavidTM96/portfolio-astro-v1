@@ -1,4 +1,7 @@
 export default {
+  portfolioTitle: "David Torrez' portfolio - Web Developer and Programmer",
+  portfolioDescription:
+    "Hire David Torrez to create your website. Web Developer and instructor. Specialized in creating Responsive and User-friendly interfaces.",
   languageLabel: "Language",
   languageOptions: {
     es: "Spanish",
@@ -6,8 +9,11 @@ export default {
   },
   nav: {
     home: "Home",
+    homeUrl: "/en/#home",
     projects: "Projects",
+    projectsUrl: "/en/#projects",
     about: "About",
+    aboutUrl: "/en/#about",
     contact: "Contact",
     themeToggle: {
       light: "Light",
@@ -19,7 +25,7 @@ export default {
     availableBadge: "Available to work",
     title: "Hey, I'm David Torrez",
     description:
-      "Web Developer based in Vancouver, Canada. I focus on creating Responsive and User-friendly interfaces.",
+      "Web Developer based in Vancouver, Canada. I focus on creating <strong>Responsive and User-friendly interfaces.</strong>",
     resumeButton: "Resume",
   },
   projects: {
@@ -35,9 +41,9 @@ export default {
   about: {
     title: "About",
     paragraph1:
-      "My name is David Torrez, I realized I wanted to be in this industry around 2021 when I was surfing the internet and looking at some websites with amazing effects and animations, since then I started watching tutorials about CSS and HTML, as well as taking some online courses.",
+      "My name is David Torrez, I realized I wanted to be in this industry around 2021 when I was surfing the internet and looking at some websites with amazing effects and animations, <strong>since then I started watching tutorials about CSS and HTML, as well as taking some online courses.</strong>",
     paragraph2:
-      "I took a Bachelor's degree in Bilingual Education in Colombia and graduated in 2021, after a couple of years trying to learn about Web Development on my own, I wanted to level up, therefore, I decided to come to Canada to pursue a formal education in Web Development at CICCC.",
+      "I took a Bachelor's degree in Bilingual Education in Colombia and graduated in 2021, after a couple of years trying to learn about Web Development on my own, I wanted to level up, therefore, I decided to come to Canada to pursue a formal education in Web Development at",
     paragraph3:
       "When I'm not coding, I'm usually watching a movie, riding my bicycle, working out, or spending time with relatives or friends.",
   },
