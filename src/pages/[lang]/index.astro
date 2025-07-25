@@ -1,0 +1,67 @@
+---
+import AboutMe from "../../components/AboutMe.astro";
+import Hero from "../../components/Hero.astro";
+import CodeIcon from "../../components/icons/Code.astro";
+import ProfileCheck from "../../components/icons/ProfileCheck.astro";
+import Projects from "../../components/Projects.astro";
+import SectionContainer from "../../components/SectionContainer.astro";
+import TitleSection from "../../components/TitleSection.astro";
+import en from "../../i18n/en";
+import es from "../../i18n/es";
+import Layout from "../../layouts/Layout.astro";
+import type { Language } from "../../types/language.type";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+export const defaultRedirect = "/en";
+
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+---
+
+<Layout
+  t={t}
+  lang={lang}
+  title={t.portfolioTitle}
+  description={t.portfolioDescription}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36" id={t.nav.homeUrl.split("#")[1]}>
+      <Hero t={t} />
+      <slot />
+    </SectionContainer>
+
+    <div class="space-y-24">
+      <!-- Experience section commented for now as no experience to show -->
+      <!-- <SectionContainer id="experience">
+        <TitleSection>
+          <Briefcase class="size-8" />
+          Work Experience
+        </TitleSection>
+        <Experience />
+      </SectionContainer> -->
+
+      <SectionContainer
+        id={t.nav.projectsUrl.split("#")[1]}
+        class="scroll-mt-24"
+      >
+        <TitleSection>
+          <CodeIcon class="size-8" />
+          {t.nav.projects}
+        </TitleSection>
+        <Projects t={t} />
+      </SectionContainer>
+
+      <SectionContainer id={t.nav.aboutUrl.split("#")[1]} class="scroll-mt-24">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          {t.nav.about}
+        </TitleSection>
+        <AboutMe t={t} />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>
