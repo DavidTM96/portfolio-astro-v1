@@ -1,4 +1,5 @@
 ---
+const { t } = Astro.props;
 import GithubIcon from "../components/icons/Github.astro";
 import Link from "./icons/Link.astro";
 import NextJS from "./icons/NextJS.astro";
@@ -21,8 +22,7 @@ const TAGS = {
 const PROJECTS = [
   {
     title: "Real Outfit",
-    description:
-      "Real Outfit allows users to browse products, view detailed product information, and manage their shopping cart. With a clean, responsive interface and modern tech stack, this platform is built for a smooth and enjoyable shopping experience.",
+    description: t.projects.project1Description,
     link: "https://real-outfit-86dmsikw7-davidtm96s-projects.vercel.app/",
     github: "https://github.com/DavidTM96/real-outfit",
     image: "/projects/real-outfit.webp",
@@ -30,8 +30,7 @@ const PROJECTS = [
   },
   {
     title: "Up Immigration",
-    description:
-      "Welcome to Up Immigration! This website is designed to clearly present various Canadian immigration pathways, such as study permits, work permits, and more. With a clean and accessible interface, users can easily explore their options and understand the steps involved in each immigration process.",
+    description: t.projects.project2Description,
     link: "https://migration-crew-website.vercel.app/",
     github: "https://github.com/migration-crew/immigration-website",
     image: "/projects/up-immigration.webp",
@@ -39,8 +38,7 @@ const PROJECTS = [
   },
   {
     title: "Finance Tracker",
-    description:
-      "Finance M8 is designed to help you effortlessly track your incomes and expenses. With a simple and intuitive interface, you can easily add new financial records, update existing ones, and delete records you no longer need.",
+    description: t.projects.project3Description,
     link: "https://finance-m8.vercel.app/",
     github: "https://github.com/DavidTM96/finance-m8",
     image: "/projects/finance-tracker.webp",
@@ -89,7 +87,7 @@ const PROJECTS = [
               {github && (
                 <LinkButton href={github}>
                   <GithubIcon class="size-6" />
-                  Code
+                  {t.projects.codeButton}
                 </LinkButton>
               )}
               {link && (
