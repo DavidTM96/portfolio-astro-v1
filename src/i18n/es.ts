@@ -1,4 +1,8 @@
 export default {
+  portfolioTitle:
+    "Portafolio de David Torrez - Desarrollador y Programador Web",
+  portfolioDescription:
+    "Contrata a David Torrez para crear tu sitio web. Desarrollador web e instructor. Especializado en crear interfaces responsivas e intuitivas.",
   languageLabel: "Idioma",
   languageOptions: {
     es: "Español",
@@ -6,8 +10,11 @@ export default {
   },
   nav: {
     home: "Inicio",
+    homeUrl: "/es/#inicio",
     projects: "Proyectos",
+    projectsUrl: "/es/#proyectos",
     about: "Sobre mí",
+    aboutUrl: "/es/#sobre-mi",
     contact: "Contacto",
     themeToggle: {
       light: "Claro",
@@ -19,7 +26,8 @@ export default {
     availableBadge: "Disponible para trabajar",
     title: "¡Hola, soy David Torrez!",
     description:
-      "Desarrollador web con sede en Vancouver, Canadá. Me especializo en crear interfaces responsivas y fáciles de usar.",
+      "Desarrollador web en Vancouver, Canadá. Me especializo en crear <strong>interfaces responsivas e intuitivas.</strong>",
+
     resumeButton: "Currículum",
   },
   projects: {
@@ -35,9 +43,9 @@ export default {
   about: {
     title: "Sobre mí",
     paragraph1:
-      "Mi nombre es David Torrez, me di cuenta que quería estar en esta industria alrededor de 2021 cuando navegaba en internet y veía algunos sitios web con efectos y animaciones increíbles, desde entonces comencé a ver tutoriales sobre CSS y HTML, además de tomar algunos cursos en línea.",
+      "Mi nombre es David Torrez, me di cuenta que quería estar en esta industria alrededor de 2021 cuando navegaba en internet y veía algunos sitios web con efectos y animaciones increíbles, <strong>desde entonces comencé a ver tutoriales sobre CSS y HTML, además de tomar algunos cursos en línea.</strong>",
     paragraph2:
-      "Estudié Licenciatura en Educación Bilingüe en Colombia y me gradué en el 2021, después de un par de años intentando aprender sobre Desarrollo Web por mi cuenta, quería subir de nivel, por lo tanto, decidí venir a Canadá a realizar una educación formal en Desarrollo Web en CICCC.",
+      "Estudié Licenciatura en Educación Bilingüe en Colombia y me gradué en el 2021, después de un par de años intentando aprender sobre Desarrollo Web por mi cuenta, quería subir de nivel, por lo tanto, decidí venir a Canadá a realizar una educación formal en Desarrollo Web en",
     paragraph3:
       "Cuando no estoy programando, normalmente estoy viendo una película, montando en bicicleta, haciendo ejercicio o pasando tiempo con familiares o amigos.",
   },
