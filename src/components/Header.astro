@@ -1,5 +1,13 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+const { lang, t } = Astro.props;
+
+const languages = [
+  { code: "es", label: t.languageOptions.es },
+  { code: "en", label: t.languageOptions.en },
+];
 
 const navItems = [
   /* {
@@ -8,22 +16,22 @@ const navItems = [
     url: "/#experience",
   }, */
   {
-    title: "Home",
+    title: t.nav.home,
     label: "home",
-    url: "/#home",
+    url: t.nav.homeUrl,
   },
   {
-    title: "Projects",
+    title: t.nav.projects,
     label: "projects",
-    url: "/#projects",
+    url: t.nav.projectsUrl,
   },
   {
-    title: "About",
+    title: t.nav.about,
     label: "about",
-    url: "/#about",
+    url: t.nav.aboutUrl,
   },
   {
-    title: "Contact",
+    title: t.nav.contact,
     label: "contact",
     url: "mailto:dtorrez1996@gmail.com",
   },
@@ -31,7 +39,7 @@ const navItems = [
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2 gap-2"
 >
   <nav
     class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
@@ -47,7 +55,8 @@ const navItems = [
         </a>
       ))
     }
-    <ThemeToggle />
+    <ThemeToggle t={t} />
+    <LanguageSwitcher lang={lang} t={t} />
   </nav>
 </header>
 
