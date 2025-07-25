@@ -1,9 +1,14 @@
 ---
+const { t } = Astro.props;
 import SunIcon from "./icons/Sun.astro";
 import MoonIcon from "./icons/Moon.astro";
 import SystemIcon from "./icons/System.astro";
 
-const THEMES = ["Light", "Dark", "System"];
+const THEMES = [
+  { key: "light", label: t.nav.themeToggle.light },
+  { key: "dark", label: t.nav.themeToggle.dark },
+  { key: "system", label: t.nav.themeToggle.system },
+];
 ---
 
 <div class="relative ml-1 mr-1">
@@ -31,8 +36,11 @@ const THEMES = ["Light", "Dark", "System"];
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+          <li
+            class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+            data-key={theme.key}
+          >
+            {theme.label}
           </li>
         ))
       }
@@ -58,11 +66,11 @@ const THEMES = ["Light", "Dark", "System"];
     }
   }
 </style>
-
 <script is:inline>
   let remove = null;
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
   const themesMenu = document.getElementById("themes-menu");
+  const toggleBtn = document.getElementById("theme-toggle-btn");
 
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined") {
@@ -84,6 +92,7 @@ const THEMES = ["Light", "Dark", "System"];
     if (remove != null) {
       remove();
     }
+
     matchMedia.addEventListener("change", updateTheme);
     remove = () => {
       matchMedia.removeEventListener("change", updateTheme);
@@ -100,18 +109,31 @@ const THEMES = ["Light", "Dark", "System"];
 
   updateTheme();
 
-  document.addEventListener("click", () => themesMenu.classList.remove("open"));
+  document.addEventListener("click", () => {
+    themesMenu.classList.remove("open");
+  });
 
-  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
+  toggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isClosed = !themesMenu.classList.contains("open");
     themesMenu.classList[isClosed ? "add" : "remove"]("open");
+
+    if (isClosed) {
+      document.dispatchEvent(new CustomEvent("close-language-menu"));
+    }
+  });
+
+  document.addEventListener("close-theme-menu", () => {
+    themesMenu.classList.remove("open");
   });
 
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim());
-      updateTheme();
+      const key = e.target.getAttribute("data-key");
+      if (key) {
+        localStorage.setItem("theme", key);
+        updateTheme();
+      }
     });
   });
 
