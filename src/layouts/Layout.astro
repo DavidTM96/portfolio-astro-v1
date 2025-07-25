@@ -5,17 +5,25 @@ import "@fontsource-variable/onest";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import type { Translation } from "../types/translation.type";
 
 interface Props {
   title: string;
   description: string;
+  lang: string;
+  t: Translation;
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang, t } = Astro.props;
+
+const languages = [
+  { code: "es", label: t.languageOptions.es },
+  { code: "en", label: t.languageOptions.en },
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -33,9 +41,9 @@ const { title, description } = Astro.props;
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
-    <Header />
+    <Header t={t} lang={lang} />
     <slot />
-    <Footer />
+    <Footer t={t} />
     <style is:global>
       :root {
         color-scheme: light dark;
