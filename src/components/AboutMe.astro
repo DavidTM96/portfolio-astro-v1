@@ -1,4 +1,5 @@
 ---
+const { t } = Astro.props;
 const personalImageAlt = "David Torrez";
 ---
 
@@ -8,20 +9,16 @@ const personalImageAlt = "David Torrez";
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
-    <p>
-      My name is David Torrez, I realized I wanted to be in this industry around
-      2021 when I was surfing the internet and looking at some websites with
-      amazing effects and animations, <strong
-        >since then I started watching tutorials about CSS and HTML, as well as
-        taking some online courses.</strong
-      >
-    </p>
+    <p
+      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      set:html={t.about.paragraph1}
+    />
 
-    <p>
-      I took a Bachelor's degree in Bilingual Education in Colombia and
-      graduated in 2021, after a couple of years trying to learn about Web
-      Development on my own, I wanted to level up, therefore, I decided to come
-      to Canada to pursue a formal education in Web Development at <strong
+    <p
+      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+    >
+      {t.about.paragraph2}
+      <strong
         ><a
           href="https://ciccc.ca/"
           rel="noopener noreferrer"
@@ -30,9 +27,10 @@ const personalImageAlt = "David Torrez";
       >.
     </p>
 
-    <p>
-      When I'm not coding, I'm usually watching a movie, riding my bicycle,
-      working out, or spending time with relatives or friends.
+    <p
+      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+    >
+      {t.about.paragraph3}
     </p>
   </div>
 
