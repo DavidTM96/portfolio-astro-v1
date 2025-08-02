@@ -4,13 +4,12 @@ import SpainFlag from "./icons/SpainFlag.astro";
 
 const { lang, t } = Astro.props;
 
+const currentLang = Astro.currentLocale;
+
 const languages = [
   { code: "en", label: t.languageOptions.en, flag: "uk" },
   { code: "es", label: t.languageOptions.es, flag: "es" },
 ];
-
-const currentLang =
-  languages.find((language) => language.code === lang) ?? languages[0];
 ---
 
 <div class="relative inline-block">
@@ -20,7 +19,7 @@ const currentLang =
     type="button"
   >
     <span>
-      {currentLang.code === "en" ? <UkFlag /> : <SpainFlag />}
+      {currentLang === "en" ? <UkFlag /> : <SpainFlag />}
     </span>
     <svg
       class="w-4 h-4"
@@ -93,7 +92,36 @@ const currentLang =
             /^\/(es|en)/,
             `/${lang}`
           );
-          window.location.pathname = newPath;
+
+          // Handle hash translation
+          const currentHash = window.location.hash;
+          let newHash = currentHash;
+
+          // Get current language from URL path
+          const currentLang = window.location.pathname.startsWith("/es/")
+            ? "es"
+            : "en";
+
+          // Translate hash fragments based on current language
+          if (currentLang === "en" && lang === "es") {
+            // English to Spanish
+            newHash = currentHash
+              .replace("#home", "#inicio")
+              .replace("#projects", "#proyectos")
+              .replace("#about", "#sobre-mi")
+              .replace("#contact", "#contacto")
+              .replace("#experience", "#experiencia");
+          } else if (currentLang === "es" && lang === "en") {
+            // Spanish to English
+            newHash = currentHash
+              .replace("#inicio", "#home")
+              .replace("#projects", "#projects")
+              .replace("#sobre-mi", "#about")
+              .replace("#contacto", "#contact")
+              .replace("#experiencia", "#experience");
+          }
+
+          window.location.href = newPath + newHash;
         }
       });
     });
