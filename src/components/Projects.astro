@@ -47,10 +47,13 @@ const PROJECTS = [
 ];
 ---
 
-<div class="flex flex-col gap-y-16">
+<div class="flex flex-col gap-y-16 projects-container">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+    PROJECTS.map(({ image, title, description, tags, link, github }, index) => (
+      <article
+        class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 project-item"
+        style={`view-transition-name: project-${index}`}
+      >
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50 h-full">
             <img
@@ -103,3 +106,71 @@ const PROJECTS = [
     ))
   }
 </div>
+
+<style>
+  .projects-container {
+    view-transition-name: projects-container;
+  }
+
+  /* Initial state - projects start invisible */
+  .project-item {
+    opacity: 0;
+    transform: translateX(200px);
+    transition:
+      opacity 1.5s ease-out,
+      transform 1.5s ease-out;
+  }
+
+  /* Animation classes that will be added via JavaScript */
+  .project-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-item:nth-child(1).animate {
+    transition-delay: 0.3s;
+  }
+
+  .project-item:nth-child(2).animate {
+    transition-delay: 0.3s;
+  }
+
+  .project-item:nth-child(3).animate {
+    transition-delay: 0.3s;
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .project-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.3, // Trigger when 30% of the element is visible
+    rootMargin: "0px 0px -50px 0px", // Start animation slightly before element enters viewport
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+        // Once animation is triggered, stop observing
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all project items
+  document.addEventListener("astro:page-load", () => {
+    const projectItems = document.querySelectorAll(".project-item");
+    projectItems.forEach((item) => {
+      observer.observe(item);
+    });
+  });
+</script>
