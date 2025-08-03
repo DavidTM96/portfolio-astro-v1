@@ -8,10 +8,10 @@ import Badge from "./Badge.astro";
 import SocialPill from "./SocialPill.astro";
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
+<div class="max-w-xl hero-container">
+  <div class="flex gap-4 mb-4 hero-image-section">
     <img
-      class="rounded-full shadow-lg size-20 aspect-auto object-cover"
+      class="rounded-full shadow-lg size-20 aspect-auto object-cover hero-image"
       src="/picture-3.webp"
       alt={personalImageAlt}
     />
@@ -19,21 +19,21 @@ import SocialPill from "./SocialPill.astro";
       href="https://www.linkedin.com/in/david-torrez"
       target="_blank"
       rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
+      class="flex items-center transition md:justify-center md:hover:scale-105 hero-badge"
     >
       <Badge>{t.hero.availableBadge}</Badge>
     </a>
   </div>
   <h1
-    class="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-gray-800 dark:text-white"
+    class="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-gray-800 dark:text-white hero-title"
   >
     {t.hero.title}
   </h1>
   <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 hero-description"
     set:html={t.hero.description}
   />
-  <nav class="flex flex-nowrap gap-x-2 mt-8">
+  <nav class="flex flex-nowrap gap-x-2 mt-8 hero-nav">
     <SocialPill href="https://github.com/DavidTM96">
       <GithubIcon class="size-4" />
       GitHub
@@ -50,3 +50,90 @@ import SocialPill from "./SocialPill.astro";
     </SocialPill>
   </nav>
 </div>
+
+<style>
+  .hero-container {
+    view-transition-name: hero-container;
+  }
+
+  /* Initial state - elements start invisible */
+  .hero-image-section,
+  .hero-image,
+  .hero-badge,
+  .hero-title,
+  .hero-description,
+  .hero-nav {
+    opacity: 0;
+  }
+
+  /* Initial load animations with delays */
+  .hero-image-section {
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+  }
+
+  .hero-image {
+    animation: scaleIn 1.5s ease-out 0.5s both;
+  }
+
+  .hero-badge {
+    animation: fadeInRight 1s ease-out 0.6s both;
+  }
+
+  .hero-title {
+    animation: fadeInUp 1s ease-out 1s both;
+  }
+
+  .hero-description {
+    animation: fadeInUp 1.5s ease-out 1.5s both;
+  }
+
+  .hero-nav {
+    animation: fadeInUp 2s ease-out 2s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image-section,
+    .hero-image,
+    .hero-badge,
+    .hero-title,
+    .hero-description,
+    .hero-nav {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
