@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* View Transitions Support */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes slide-to-left {
+  to {
+    transform: translateX(-30px);
+  }
+}
+
+/* Smooth view transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* Custom view transition names */
+::view-transition-old(hero-container),
+::view-transition-new(hero-container) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(projects-container),
+::view-transition-new(projects-container) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(about-container),
+::view-transition-new(about-container) {
+  animation: none;
+  mix-blend-mode: normal;
+}
