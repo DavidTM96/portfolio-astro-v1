@@ -10,12 +10,12 @@ const personalImageAlt = "David Torrez";
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
     <p
-      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      class="about-p1 mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
       set:html={t.about.paragraph1}
     />
 
     <p
-      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      class="about-p2 mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
     >
       {t.about.paragraph2}
       <strong
@@ -28,7 +28,7 @@ const personalImageAlt = "David Torrez";
     </p>
 
     <p
-      class="mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      class="about-p3 mt-6 text-base text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
     >
       {t.about.paragraph3}
     </p>
@@ -39,7 +39,62 @@ const personalImageAlt = "David Torrez";
     height="200"
     src="/picture-1.webp"
     alt={personalImageAlt}
-    class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
+    class="about-image order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
     style="object-position: 50% 50%"
   />
 </article>
+
+<style>
+  .about-p1,
+  .about-p2,
+  .about-p3,
+  .about-image {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out forwards;
+    animation-play-state: paused;
+    will-change: opacity, transform;
+  }
+
+  .about-image {
+    animation-delay: 0.3s;
+  }
+
+  .about-p1 {
+    animation-delay: 0.6s;
+  }
+
+  .about-p2 {
+    animation-delay: 0.9s;
+  }
+
+  .about-p3 {
+    animation-delay: 1.2s;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const paragraphs = document.querySelectorAll(
+      ".about-p1, .about-p2, .about-p3, .about-image"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            el.style.animationPlayState = "running";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    paragraphs.forEach((p) => {
+      const el = p as HTMLElement;
+      el.style.animationPlayState = "paused";
+      observer.observe(p);
+    });
+  });
+</script>
